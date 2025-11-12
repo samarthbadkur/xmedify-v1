@@ -120,6 +120,7 @@ export default function SearchHospital() {
 
       <Button
         type="submit"
+        aria-label="Search"
         variant="contained"
         size="large"
         startIcon={<SearchIcon />}

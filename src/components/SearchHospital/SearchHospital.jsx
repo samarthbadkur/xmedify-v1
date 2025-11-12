@@ -4,8 +4,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-//Component to search the hospitals based on State and City selection.
-//API used to fetch details of hospital and set the values in formData
+// Component to search the hospitals based on State and City selection.
+// API used to fetch details of hospital and set the values in formData
 export default function SearchHospital() {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -36,13 +36,12 @@ export default function SearchHospital() {
           `https://meddata-backend.onrender.com/cities/${formData.state}`
         );
         setCities(data.data);
-        // console.log("city", data.data);
       } catch (error) {
         console.log("Error in fetching city:", error);
       }
     };
 
-    if (formData.state != "") {
+    if (formData.state !== "") {
       fetchCities();
     }
   }, [formData.state]);
@@ -119,6 +118,7 @@ export default function SearchHospital() {
       </Select>
 
       <Button
+        id="searchBtn" // Added id here for Cypress compatibility
         type="submit"
         aria-label="Search"
         variant="contained"
@@ -126,7 +126,7 @@ export default function SearchHospital() {
         startIcon={<SearchIcon />}
         sx={{ py: "15px", px: 8, flexShrink: 0 }}
         disableElevation
-        id="searchBtn"
+        data-testid="searchBtn"
       >
         Search
       </Button>
